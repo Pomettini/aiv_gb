@@ -13,8 +13,8 @@ static int aiv_gb_opcode_f0(aiv_gameboy *gb)
 //POP AF
 static int aiv_gb_opcode_f1(aiv_gameboy *gb)
 {
-    gb->af = aiv_gb_memory_read16(gb, gb->sp + 1);
-    gb->sp += 2;
+    gb->af = aiv_gb_memory_read8(gb, gb->sp);
+    gb->sp += 1;
     return 12;
 }
 
@@ -28,8 +28,8 @@ static int aiv_gb_opcode_f2(aiv_gameboy *gb)
 //PUSH AF
 static int aiv_gb_opcode_f5(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write16(gb, gb->sp - 2, gb->af);
-    gb->sp -= 2;
+    aiv_gb_memory_write8(gb, gb->sp, gb->af);
+    gb->sp -= 1;
     return 16;
 }
 
